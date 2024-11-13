@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora GEA-Nasa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .calculator-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h2 {
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #333;
+            margin-top: 10px;
+            display: block;
+        }
+
+        .option-group {
+            margin: 10px 0;
+        }
+
+        .option-group label {
+            font-weight: normal;
+            color: #555;
+        }
+
+        .option-group input {
+            margin-right: 10px;
+            transform: scale(1.2);
+            accent-color: #007bff;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <h2>Calculadora GEA-Nasa</h2>
+        
+        <form id="geaNasaForm">
+            <div class="option-group">
+                <label>Número de Cálculos:</label>
+                <label><input type="radio" name="numero" value="1"> 1</label>
+                <label><input type="radio" name="numero" value="2"> 2 o más</label>
+            </div>
+
+            <div class="option-group">
+                <label>Ángulo:</label>
+                <label><input type="radio" name="angulo" value="1"> >45° o fuera de cáliz inferior</label>
+                <label><input type="radio" name="angulo" value="2"> <45°</label>
+            </div>
+
+            <div class="option-group">
+                <label>Tamaño:</label>
+                <label><input type="radio" name="tamano" value="1"> <2 cm³</label>
+                <label><input type="radio" name="tamano" value="2"> >2 cm³</label>
+            </div>
+
+            <div class="option-group">
+                <label>Anatomía:</label>
+                <label><input type="radio" name="anatomia" value="1"> Alterada</label>
+                <label><input type="radio" name="anatomia" value="2"> No alterada</label>
+            </div>
+
+            <button type="button" onclick="calcularPuntaje()">Calcular Puntaje</button>
+        </form>
+        
+        <div class="result">
+            Resultado: <span id="resultado">0</span>
+        </div>
+    </div>
+
+    <script>
+        function calcularPuntaje() {
+            const form = document.getElementById('geaNasaForm');
+            let puntaje = 0;
+
+            const numero = parseInt(form.numero.value);
+            const angulo = parseInt(form.angulo.value);
+            const tamano = parseInt(form.tamano.value);
+            const anatomia = parseInt(form.anatomia.value);
+
+            if (!isNaN(numero)) puntaje += numero;
+            if (!isNaN(angulo)) puntaje += angulo;
+            if (!isNaN(tamano)) puntaje += tamano;
+            if (!isNaN(anatomia)) puntaje += anatomia;
+
+            document.getElementById('resultado').innerText = puntaje;
+        }
+    </script>
+</body>
+</html>
